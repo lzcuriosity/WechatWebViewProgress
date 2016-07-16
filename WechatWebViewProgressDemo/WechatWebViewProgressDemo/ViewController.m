@@ -7,8 +7,10 @@
 //
 
 #import "ViewController.h"
+#import "LZWebViewProgress.h"
+#import "LZWebViewProgressView.h"
 
-@interface ViewController ()<UIWebViewDelegate>
+@interface ViewController ()<UIWebViewDelegate,LZWebViewProgressDelegate>
 
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 
@@ -17,13 +19,31 @@
 @end
 
 @implementation ViewController
+{
+    LZWebViewProgressView *_progressView;
+    LZWebViewProgress *_progressProxy;
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.webView.delegate = self;
-    NSURLRequest *req = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://lzcuriosity.github.io"]];
+  
+    self.automaticallyAdjustsScrollViewInsets = NO;
+
+    _progressProxy = [[LZWebViewProgress alloc] init];
+    _webView.delegate = _progressProxy;
+    _progressProxy.webViewProxyDelegate = self;
+    _progressProxy.progressDelegate = self;
+    
+    CGFloat progressBarHeight = 2.f;
+    CGRect navigationBarBounds = self.navigationController.navigationBar.bounds;
+    CGRect barFrame = CGRectMake(0, navigationBarBounds.size.height - progressBarHeight, navigationBarBounds.size.width, progressBarHeight);
+    _progressView = [[LZWebViewProgressView alloc] initWithFrame:barFrame];
+    _progressView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
+    
+    NSURLRequest *req = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://www.baidu.com"]];
     [self.webView loadRequest:req];
+
 }
 
 
@@ -33,8 +53,26 @@
     
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController.navigationBar addSubview:_progressView];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [_progressView removeFromSuperview];
+}
+
 - (IBAction)refreshWebView:(id)sender {
     [self.webView reload];
+}
+
+#pragma mark - NJKWebViewProgressDelegate
+-(void)webViewProgress:(LZWebViewProgress *)webViewProgress updateProgress:(float)progress
+{
+    [_progressView setProgress:progress];
 }
 
 

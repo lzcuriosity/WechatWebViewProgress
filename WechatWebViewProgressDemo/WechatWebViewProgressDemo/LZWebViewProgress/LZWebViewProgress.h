@@ -10,14 +10,11 @@
 #import <UIKit/UIKit.h>
 
 extern const float LZInitialProgressValue;
-extern const float LZInteractiveProgressValue;
 extern const float LZFinalProgressValue;
-
-typedef void (^LZWebViewProgressBlock)(float progress);
 
 @protocol LZWebViewProgressDelegate;
 
-@interface LZWebViewProgress : NSObject
+@interface LZWebViewProgress : NSObject<UIWebViewDelegate>
 
 @property (nonatomic, weak) id<LZWebViewProgressDelegate>progressDelegate;
 @property (nonatomic, weak) id<UIWebViewDelegate>webViewProxyDelegate;

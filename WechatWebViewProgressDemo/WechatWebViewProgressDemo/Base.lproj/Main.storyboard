@@ -28,13 +28,17 @@
                         <constraints>
                             <constraint firstItem="o05-7N-gap" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="H1o-rb-5rd"/>
                             <constraint firstItem="o05-7N-gap" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="RIw-vv-oDO"/>
-                            <constraint firstItem="o05-7N-gap" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="VLS-8Z-C6C"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="o05-7N-gap" secondAttribute="bottom" id="WTr-C3-BhQ"/>
+                            <constraint firstItem="o05-7N-gap" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="gAQ-nM-L3l"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="o05-7N-gap" secondAttribute="bottom" id="m75-zp-Bg8"/>
                             <constraint firstAttribute="trailingMargin" secondItem="o05-7N-gap" secondAttribute="trailing" constant="-20" id="mMQ-MZ-rMQ"/>
+                            <constraint firstItem="o05-7N-gap" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="qff-Gk-Daj"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="VLS-8Z-C6C"/>
+                                <exclude reference="H1o-rb-5rd"/>
+                                <exclude reference="qff-Gk-Daj"/>
+                                <exclude reference="WTr-C3-BhQ"/>
                             </mask>
                         </variation>
                     </view>
@@ -50,7 +54,7 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="1860" y="214"/>
+            <point key="canvasLocation" x="1872" y="185"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="wnW-yy-GBc">

@@ -26,6 +26,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        self.backgroundColor = [UIColor clearColor];
         [self configureViews];
     }
     return self;
@@ -49,6 +50,7 @@
         tintColor = UIApplication.sharedApplication.delegate.window.tintColor;
     }
     _progressBarView.backgroundColor = tintColor;
+    _progressBarView.alpha = 0;
     [self addSubview:_progressBarView];
     
     _barAnimationDuration = 0.27f;
@@ -65,27 +67,37 @@
 
 - (void)setProgress:(float)progress
 {
-    BOOL isGrowing = progress > 0.0 && progress < 1.0;
-    if (isGrowing) {
-        [UIView animateWithDuration:_barAnimationDuration delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-            CGRect frame = _progressBarView.frame;
-            frame.size.width = progress * self.bounds.size.width;
-            _progressBarView.frame = frame;
-            _progressBarView.alpha = 1.0;
-        } completion:nil];
-    }
-    
-    BOOL isFinished = progress >= 1.0;
-    if (isFinished) {
-        [UIView animateWithDuration:_fadeAnimationDuration delay:_fadeOutDelay options:UIViewAnimationOptionCurveEaseInOut animations:^{
-            _progressBarView.alpha = 0.0;
-        } completion:^(BOOL completed){
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        BOOL isReset = progress == 0;
+        if (isReset) {
+            _progressBarView.alpha = 0;
             CGRect frame = _progressBarView.frame;
             frame.size.width = 0;
             _progressBarView.frame = frame;
-        }];
-    }
-    
+        }
+        
+        BOOL isGrowing = progress > 0.0 && progress <= 1.0;
+        if (isGrowing) {
+            [UIView animateWithDuration:_barAnimationDuration delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                _progressBarView.alpha = 1.0;
+                CGRect frame = _progressBarView.frame;
+                frame.size.width = progress * self.bounds.size.width;
+                _progressBarView.frame = frame;
+            } completion:nil];
+        }
+        
+        BOOL isFinished = progress >= 1.0;
+        if (isFinished) {
+            [UIView animateWithDuration:_fadeAnimationDuration delay:_fadeOutDelay options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                _progressBarView.alpha = 0.0;
+            } completion:^(BOOL completed){
+                CGRect frame = _progressBarView.frame;
+                frame.size.width = 0;
+                _progressBarView.frame = frame;
+            }];
+        }
+    });
 }
 
 @end
