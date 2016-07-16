@@ -57,6 +57,7 @@
 		28A7A1AB1D38BF9A00707DDB /* LZWebViewProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LZWebViewProgress.m; sourceTree = "<group>"; };
 		28A7A1AD1D38C03A00707DDB /* LZWebViewProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LZWebViewProgressView.h; sourceTree = "<group>"; };
 		28A7A1AE1D38C03A00707DDB /* LZWebViewProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LZWebViewProgressView.m; sourceTree = "<group>"; };
+		28A7A1B01D3A386A00707DDB /* LZProgresSHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LZProgresSHeader.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +151,7 @@
 		28A7A1A91D38BA2A00707DDB /* LZWebViewProgress */ = {
 			isa = PBXGroup;
 			children = (
+				28A7A1B01D3A386A00707DDB /* LZProgresSHeader.h */,
 				28A7A1AA1D38BF9A00707DDB /* LZWebViewProgress.h */,
 				28A7A1AB1D38BF9A00707DDB /* LZWebViewProgress.m */,
 				28A7A1AD1D38C03A00707DDB /* LZWebViewProgressView.h */,

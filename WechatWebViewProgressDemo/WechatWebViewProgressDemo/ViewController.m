@@ -7,8 +7,7 @@
 //
 
 #import "ViewController.h"
-#import "LZWebViewProgress.h"
-#import "LZWebViewProgressView.h"
+#import "LZProgresSHeader.h"
 
 @interface ViewController ()<UIWebViewDelegate,LZWebViewProgressDelegate>
 
@@ -41,7 +40,7 @@
     _progressView = [[LZWebViewProgressView alloc] initWithFrame:barFrame];
     _progressView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
     
-    NSURLRequest *req = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://www.baidu.com"]];
+    NSURLRequest *req = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://www.bilibili.com"]];
     [self.webView loadRequest:req];
 
 }
