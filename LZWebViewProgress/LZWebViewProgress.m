@@ -150,7 +150,6 @@ const float LZFinalProgressValue = 0.92;
     if ([_webViewProxyDelegate respondsToSelector:@selector(webView:didFailLoadWithError:)]) {
         [_webViewProxyDelegate webView:webView didFailLoadWithError:error];
     }
-    [self reset];
 }
 
 
